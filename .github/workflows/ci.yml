@@ -28,6 +28,25 @@ jobs:
       - run: make -C documentation/examples/remote_storage
       - run: make -C documentation/examples
 
+  test_go_arm64:
+    name: Go tests on ARM64
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Run tests on ARM64
+        run: |
+          docker run --rm --platform linux/arm64 \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            quay.io/prometheus/golang-builder:1.25-base \
+            sh -c "make GO_ONLY=1 SKIP_GOLANGCI_LINT=1 && go test ./tsdb/ -test.tsdb-isolation=false"
+
   test_go_more:
     name: More Go tests
     runs-on: ubuntu-latest
