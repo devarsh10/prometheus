@@ -44,7 +44,7 @@ jobs:
           docker run --rm --platform linux/arm64 \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
-            quay.io/prometheus/golang-builder:1.25-base \
+            quay.io/prometheus/golang-builder:arm \
             sh -c "make GO_ONLY=1 SKIP_GOLANGCI_LINT=1 && go test ./tsdb/ -test.tsdb-isolation=false"
 
   test_go_more:
