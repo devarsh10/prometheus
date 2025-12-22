@@ -65,7 +65,7 @@ Prometheus will now be reachable at <http://localhost:9090/>.
 
 ### Building from source
 
-To build Prometheus from source code, You need:
+To build Prometheus from source code, you need:
 
 * Go: Version specified in [go.mod](./go.mod) or greater.
 * NodeJS: Version specified in [.nvmrc](./web/ui/.nvmrc) or greater.
