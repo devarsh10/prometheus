@@ -1594,9 +1594,6 @@ func TestIsQuerierCollidingWithTruncation_AppenderV2(t *testing.T) {
 }
 
 func TestWaitForPendingReadersInTimeRange_AppenderV2(t *testing.T) {
-	if runtime.GOARCH == "arm64" {
-           t.Skip("Skipping on ARM64 - timing-sensitive test, see issue #16897")
-    }
 	t.Parallel()
 	db := newTestDB(t)
 	db.DisableCompactions()
