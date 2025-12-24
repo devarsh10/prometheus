@@ -39,7 +39,7 @@ jobs:
         uses: docker/setup-qemu-action@v3
       - name: Run tests on ARM64
         run: |
-          docker run --rm \
+          docker run --rm --entrypoint="" \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
             quay.io/prometheus/golang-builder:arm \
