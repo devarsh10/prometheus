@@ -43,7 +43,7 @@ jobs:
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
             quay.io/prometheus/golang-builder:arm \
-            sh -c "GOARCH=arm64 go test ./tsdb/ -test.tsdb-isolation=false"
+            sh -c "GOARCH=arm64 go test ./cmd/prometheus"
             
   test_go_more:
     name: More Go tests
