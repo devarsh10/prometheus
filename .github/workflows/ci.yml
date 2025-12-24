@@ -39,12 +39,12 @@ jobs:
         uses: docker/setup-qemu-action@v3
       - name: Run tests on ARM64
         run: |
-          docker run --rm --platform linux/arm64 \
+          docker run --rm \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
             quay.io/prometheus/golang-builder:arm \
-            sh -c "cd /workspace && make GO_ONLY=1 SKIP_GOLANGCI_LINT=1 && go test ./tsdb/ -test.tsdb-isolation=false"
-
+            sh -c "GOARCH=arm64 go test ./tsdb/ -test.tsdb-isolation=false"
+            
   test_go_more:
     name: More Go tests
     runs-on: ubuntu-latest
